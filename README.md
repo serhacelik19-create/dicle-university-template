@@ -1,93 +1,86 @@
-# Dicle University Information Portal & Hospital CMS Template
+# Dicle University Information Portal & Hospital CMS
 
-> [!NOTE]
-> This project is a custom template designed for **Dicle University**. It is currently under **Active Development**, serving as a functional boilerplate/portfolio demonstration showing modern full-stack integrations.
-> 
-> Crafted via **AI-Assisted Software Engineering** methodologies (collaborative iteration between developer and AI coding agents).
+A full-stack web application combining an academic university portal with a hospital administration system. Dicle University operates a medical faculty and teaching hospital within its campus, so this platform manages both academic and healthcare content under a unified admin dashboard.
 
-A modern, feature-rich web application built with **Next.js 16 (App Router, Turbopack)**, **Prisma ORM**, **PostgreSQL**, and **NextAuth.js v5**. This project serves as a comprehensive platform combining an academic university information portal with a medical clinic/hospital management system.
-
-## 🚀 Key Features
-
-### 🏛️ University Information Portal
-- **Academic Calendar**: Dynamically managed calendar dates and term schedules.
-- **Academic Units**: Manage faculties, vocational schools, research centers, and departments.
-- **Student Services CMS**: Links, tools, and services organized for active students.
-- **Research Hub**: Showcase scientific centers, highlights, and publications.
-
-### 🏥 Hospital Administration System
-- **Polyclinics Manager**: List and edit active clinics, emergency rooms, and medical departments.
-- **Hospital Announcements**: Clinic-specific announcements and patient notification systems.
-- **Staff Directory**: Administrative and academic doctor profiles with avatars and contact info.
-
-### ⚙️ Rich Admin Dashboard
-- **Universal Content CMS**: Add, edit, or delete news, announcements, and campus events.
-- **Intelligent AI Chatbot**: Built-in NLP-supported virtual assistant designed to answer visitor questions.
-- **PDF Food Menu Parser**: Automatically extract daily soup, main courses, and calories directly from university PDF menus.
-- **Audit Logs & Roles**: Comprehensive role-based access control (Admin/User) powered by NextAuth.js.
+Built with **Next.js 16 (App Router, Turbopack)**, **Prisma ORM**, **PostgreSQL**, and **NextAuth.js v5**.
 
 ---
 
-## 🛠️ Technology Stack
+## Features
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (Turbopack, App Router, React Server Components)
-- **Database ORM**: [Prisma ORM](https://www.prisma.io/)
-- **Database Engine**: PostgreSQL
-- **Security & Auth**: [NextAuth.js v5 (Beta)](https://authjs.dev/)
-- **UI & Components**: TailwindCSS, Framer Motion, Lucide Icons, Radix UI
-- **Rich Text Editor**: TipTap Editor Integration
-- **File Parser**: `pdf-parse` for automated menu scanning
+### University Portal
+- **Academic Calendar:** Dynamic term schedules and key dates.
+- **Academic Units:** Faculties, vocational schools, research centers, and departments with full CRUD management.
+- **Student Services:** Organized links, tools, and service pages for active students.
+- **Research Hub:** Scientific centers, publication highlights, and research showcases.
+
+### Hospital Administration
+- **Polyclinics Manager:** Active clinics, emergency departments, and medical units.
+- **Announcements:** Clinic-specific patient notifications and hospital-wide updates.
+- **Staff Directory:** Doctor and staff profiles with contact information and avatars.
+
+### Admin Dashboard
+- **Content CMS:** Create, edit, and delete news articles, announcements, and campus events.
+- **AI Chatbot:** NLP-powered virtual assistant for visitor questions.
+- **PDF Menu Parser:** Extracts daily soup, main courses, and calorie information from university cafeteria PDF menus.
+- **Role-Based Access:** Admin and User roles managed through NextAuth.js with audit logging.
 
 ---
 
-## 💻 Getting Started
+## Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| Framework | Next.js 16 (Turbopack, App Router, React Server Components) |
+| Database | PostgreSQL via Prisma ORM |
+| Auth | NextAuth.js v5 |
+| UI | TailwindCSS, Framer Motion, Lucide Icons, Radix UI |
+| Rich Text | TipTap Editor |
+| PDF Parsing | pdf-parse |
+
+---
+
+## Setup
 
 ### Prerequisites
-- Node.js (v18.x or later)
-- PostgreSQL database instance
+- Node.js v18+
+- PostgreSQL instance
 
 ### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
-   ```
+```bash
+git clone https://github.com/serhacelik19-create/dicle-university-template.git
+cd dicle-university-template
+npm install
+```
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+Create a `.env` file:
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/databasename?schema=public"
+AUTH_SECRET="your-32-character-secret-key"
+```
 
-3. **Configure Environment Variables:**
-   Create a `.env` file in the root directory and define the following variables:
-   ```env
-   DATABASE_URL="postgresql://username:password@localhost:5432/databasename?schema=public"
-   AUTH_SECRET="your-32-character-secret-key"
-   ```
+Initialize the database:
+```bash
+npx prisma db push
+npx tsx prisma/seed-real-content.ts
+npx tsx prisma/seed-staff.ts
+node super-seed.js
+```
 
-4. **Initialize Database Schema:**
-   Apply Prisma migrations directly to your PostgreSQL instance:
-   ```bash
-   npx prisma db push
-   ```
+Start the dev server:
+```bash
+npm run dev
+```
 
-5. **Seed Sample Data:**
-   Populate the database with realistic academic and hospital contents:
-   ```bash
-   npx tsx prisma/seed-real-content.ts
-   npx tsx prisma/seed-staff.ts
-   node super-seed.js
-   ```
+Open [http://localhost:3000](http://localhost:3000)
 
-6. **Start the Development Server:**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser to explore the portal.
+### Admin Access
+
+Authentication is managed via NextAuth.js. A default admin account is created during seeding — check seed files for credentials. Admin features are restricted to accounts with the `ADMIN` role.
 
 ---
 
-## 🔒 Security & Admin Access
-Authentication is managed via `NextAuth.js`. Admin features are restricted to accounts marked with the `ADMIN` role. 
-A default admin user is generated during the database seeding phase. Check seed files for credentials.
+## License
+
+MIT
